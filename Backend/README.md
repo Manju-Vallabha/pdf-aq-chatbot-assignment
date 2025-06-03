@@ -10,6 +10,19 @@ The backend of the PDF Chatbot application is built with **FastAPI**, handling P
 - **Question Answering**: Retrieves relevant chunks and generates context-based answers via the Together API.
 - **Error Handling**: Validates PDFs and handles processing errors.
 
+## Main Files
+This section lists the primary files in the project, their roles, and locations, mirroring the style of the provided example.
+
+-  `main.py`: FastAPI server, defines `/upload_pdf` and `/ask_question` endpoints, and sets up CORS.
+-  `extract_text.py`: Extracts text from PDFs using `PyMuPDF4LLMLoader` for efficient processing.
+-  `node_processor.py`: Processes extracted text into semantic nodes using `SemanticSplitterNodeParser` and stores embeddings.
+-  `vector_store.py`: Manages ChromaDB vector storage, creates user-specific collections based on UUID.
+-  `llm_handler.py`: Handles LLM response generation using the Together API's Llama model.
+-  `prompt_template.py`: Defines the prompt template for LLM queries, ensuring context-based answers.
+-  `pdf_processing.py`: Detects document structure and applies smart chunking strategies.
+-  `startup.py`: Initializes the embedding model and ChromaDB client for persistent storage.
+-  `requirements.txt`: Lists backend dependencies for easy installation.
+
 ## Installation
 ### Prerequisites
 - **Python** (3.8 or higher) and **pip**.
@@ -38,7 +51,7 @@ The backend of the PDF Chatbot application is built with **FastAPI**, handling P
    ```
 5. Run the FastAPI server:
    ```bash
-   uvicorn main:app --host 127.0.0.1 --port 8000
+   uvicorn main:app --reload
    ```
 
 ## Usage
