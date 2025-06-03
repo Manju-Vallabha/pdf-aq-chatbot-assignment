@@ -25,6 +25,9 @@ These innovations improve the application’s ability to handle diverse PDFs and
 
 ## Architecture
 The application follows a client-server architecture:
+
+![Flowchart](images/Cross%20Functional%20Flowchart%20(1).jpg)
+
 1. **Frontend (React.js)**:
    - Built with React components (`App.jsx`, `Header.jsx`, `ChatArea.jsx`, `MessageInput.jsx`).
    - Handles PDF uploads, question input, and displays responses in a chat interface.
