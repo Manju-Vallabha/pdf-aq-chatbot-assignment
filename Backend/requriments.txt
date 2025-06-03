@@ -1,0 +1,9 @@
+fastapi
+llama-index
+llama-index-vector-stores-chroma
+llama-index-embeddings-huggingface
+chromadb
+langchain
+pymupdf4llm
+langchain_pymupdf4llm 
+together
