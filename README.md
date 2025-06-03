@@ -12,6 +12,17 @@ This section provides links to the official documentation of key technologies us
 
 - [together.ai](https://www.together.ai/): This is the official website of Together AI, which provides the API used in llm_handler.py to generate responses. The application uses the meta-llama/Llama-3.3-70B-Instruct-Turbo-Free model via the Together API to answer user questions based on the context extracted from PDFs. The API ensures that responses are generated solely from the provided document context, adhering to the project’s requirement for accurate, context-based answers.
 
+## Innovations
+To enhance the application’s functionality and performance, two key innovations were implemented:
+
+1. **SemanticSplitterNodeParser for Intelligent Node Creation**:
+   - The application uses `SemanticSplitterNodeParser` from LlamaIndex (`node_processor.py`) to split PDF text into semantically meaningful **nodes**, rather than arbitrary text chunks. These nodes are cohesive text segments (e.g., paragraphs or sentences) that preserve contextual integrity, created using the `sentence-transformers/all-MiniLM-L6-v2` embedding model to identify natural breakpoints. By generating nodes based on semantic similarity, the application ensures that retrieved context during question answering is highly relevant, leading to more accurate and coherent responses from the LLM. Compared to traditional recursive character splitting, this semantic node creation enhances performance and answer quality, directly addressing the assignment’s requirement for optimized processing.
+
+2. **PyMuPDF4LLMLoader for Efficient Text Extraction**:
+   - The `PyMuPDF4LLMLoader` from LangChain (`extract_text.py`) is used to extract text from uploaded PDFs. This library is optimized for speed and accuracy, capable of handling complex PDF structures (e.g., multi-column layouts, tables, and embedded images with text). Unlike other libraries that may struggle with formatting or miss content, PyMuPDF ensures robust text extraction, providing high-quality input for node creation and embedding. This choice enhances the application’s reliability and performance, ensuring that even large or intricate PDFs are processed efficiently, aligning with the assignment’s non-functional requirement for performance optimization.
+
+These innovations improve the application’s ability to handle diverse PDFs and deliver precise answers, enhancing both usability and efficiency.
+
 ## Architecture
 The application follows a client-server architecture:
 1. **Frontend (React.js)**:
@@ -28,17 +39,6 @@ The application follows a client-server architecture:
 3. **Data Flow**:
    - User uploads PDF → Frontend sends to backend → Text extracted and chunked → Embeddings stored in ChromaDB.
    - User asks question → Frontend sends question and UUID → Backend retrieves chunks, queries LLM → Response displayed in frontend.
-
-## Innovations
-To enhance the application’s functionality and performance, two key innovations were implemented:
-
-1. **SemanticSplitterNodeParser for Intelligent Node Creation**:
-   - The application uses `SemanticSplitterNodeParser` from LlamaIndex (`node_processor.py`) to split PDF text into semantically meaningful **nodes**, rather than arbitrary text chunks. These nodes are cohesive text segments (e.g., paragraphs or sentences) that preserve contextual integrity, created using the `sentence-transformers/all-MiniLM-L6-v2` embedding model to identify natural breakpoints. By generating nodes based on semantic similarity, the application ensures that retrieved context during question answering is highly relevant, leading to more accurate and coherent responses from the LLM. Compared to traditional recursive character splitting, this semantic node creation enhances performance and answer quality, directly addressing the assignment’s requirement for optimized processing.
-
-2. **PyMuPDF4LLMLoader for Efficient Text Extraction**:
-   - The `PyMuPDF4LLMLoader` from LangChain (`extract_text.py`) is used to extract text from uploaded PDFs. This library is optimized for speed and accuracy, capable of handling complex PDF structures (e.g., multi-column layouts, tables, and embedded images with text). Unlike other libraries that may struggle with formatting or miss content, PyMuPDF ensures robust text extraction, providing high-quality input for node creation and embedding. This choice enhances the application’s reliability and performance, ensuring that even large or intricate PDFs are processed efficiently, aligning with the assignment’s non-functional requirement for performance optimization.
-
-These innovations improve the application’s ability to handle diverse PDFs and deliver precise answers, enhancing both usability and efficiency.
 
 ## Installation
 ### Prerequisites
