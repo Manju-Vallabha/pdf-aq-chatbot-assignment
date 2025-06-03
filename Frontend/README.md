@@ -11,6 +11,20 @@ The frontend of the PDF Chatbot application is built with **React.js**, providin
 - **Session Management**: Uses `sessionStorage` to store a UUID for persistent document querying.
 - **Confirmation Popup**: Warns users before clearing the uploaded file and chat history.
 
+## Main Files
+This section lists the primary files in the project, their roles, and locations, mirroring the style of the provided example.
+
+-  `index.html`: The HTML entry point, contains the root div for React rendering.
+-  `main.jsx`: React entry point, renders the `App` component into the root div.
+-  `App.jsx`: Main app logic, manages state for messages, file uploads, modals, and overall layout.
+-  `Header.jsx`: Handles PDF upload, file state, and triggers modals for user feedback.
+-  `ChatArea.jsx`: Displays chat messages, supports markdown for AI responses using `react-markdown`.
+-  `MessageInput.jsx`: Input field for sending messages, handles API calls to the backend for question answering.
+-  `index.css`: Tailwind CSS imports and base styles for the application.
+-  `vite.config.js`: Vite configuration, includes React and Tailwind plugins for development and build.
+-  `eslint.config.js`: ESLint configuration for code quality and linting rules.
+
+
 ## Installation
 ### Prerequisites
 - **Node.js** (v16 or higher) and **npm**.
@@ -28,7 +42,7 @@ The frontend of the PDF Chatbot application is built with **React.js**, providin
    *Dependencies*: `react`, `react-dom`, `react-markdown`, `remark-gfm`, `react-icons`.
 3. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
    The frontend runs at `http://localhost:5173`.
 4. Ensure the backend is running to handle API requests.
