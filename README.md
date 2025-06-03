@@ -1,15 +1,16 @@
 # PDF Chatbot Application
 
 ## Overview
-The PDF Chatbot is a full-stack application that allows users to upload PDF documents, process their content, and ask questions about the content using natural language processing (NLP). Built as part of the Fullstack Internship Assignment, it meets all functional and non-functional requirements, including PDF upload, question answering, follow-up questions, intuitive UI, and optimized performance. The application uses **React.js** for the frontend, **FastAPI** for the backend, and integrates **LangChain**, **LlamaIndex**, and the **Together API** for NLP processing, with **ChromaDB** for vector storage.
+The PDF Chatbot is a full-stack application that allows users to upload PDF documents, process their content, and ask questions about the content using natural language processing (NLP). Built as part of the Fullstack Internship Assignment, it meets all functional and non-functional requirements, including PDF upload, question answering, follow-up questions, intuitive UI, and optimized performance. The application uses React.js for the frontend, FastAPI for the backend, and integrates LangChain, LlamaIndex, and the Together API for NLP processing, with ChromaDB for vector storage.
 
-## Features
-- **PDF Upload**: Users can upload PDF files, which are processed and stored for querying.
-- **Question Answering**: Users can ask questions about the PDF content, with answers generated based on the document’s context.
-- **Follow-Up Questions**: Supports continuous querying of the same document using a session UUID.
-- **Usability**: Intuitive React-based UI with modals for upload feedback and a confirmation popup for clearing sessions.
-- **Error Handling**: Validates file types, handles empty PDFs, and displays user-friendly error messages.
-- **Performance**: Uses semantic chunking and efficient embedding storage for fast retrieval and response.
+## Documentation
+This section provides links to the official documentation of key technologies used in the project, explaining their relevance to the PDF Chatbot application.
+
+- [SemanticSplitterNodeParser](https://docs.llamaindex.ai/en/v0.10.17/api/llama_index.core.node_parser.SemanticSplitterNodeParser.html): This documentation details the SemanticSplitterNodeParser from LlamaIndex, which is used in node_processor.py to split extracted PDF text into semantically meaningful nodes. These nodes ensure that the text chunks preserve contextual integrity, improving the accuracy of retrieved content for question answering. The parser leverages an embedding model (sentence-transformers/all-MiniLM-L6-v2 in this project) to identify natural breakpoints in the text, a key innovation for enhancing answer quality.
+
+- [PyMuPDF4LLMLoader](https://python.langchain.com/docs/integrations/document_loaders/pymupdf4llm/): This link points to the LangChain documentation for PyMuPDF4LLMLoader, which is utilized in extract_text.py to extract text from uploaded PDFs. PyMuPDF4LLMLoader is chosen for its efficiency and ability to handle complex PDF structures, such as multi-column layouts and tables, ensuring reliable text extraction for downstream processing. This component is critical for providing high-quality text input to the semantic node creation process.
+
+- [together.ai](https://www.together.ai/): This is the official website of Together AI, which provides the API used in llm_handler.py to generate responses. The application uses the meta-llama/Llama-3.3-70B-Instruct-Turbo-Free model via the Together API to answer user questions based on the context extracted from PDFs. The API ensures that responses are generated solely from the provided document context, adhering to the project’s requirement for accurate, context-based answers.
 
 ## Architecture
 The application follows a client-server architecture:
